@@ -12,7 +12,7 @@ class MuseumApp extends StatelessWidget {
     return MaterialApp(
       title: 'Museum',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.brown,
       ),
       home: const ArtWork(title: 'Museum'),
     );
@@ -30,7 +30,7 @@ class ArtWork extends StatefulWidget {
 }
 
 class _MyArtworkState extends State<ArtWork> {
-
+int count = 0;
   @override
   Widget build(BuildContext context) {
 
@@ -59,12 +59,38 @@ class _MyArtworkState extends State<ArtWork> {
                   fontFamily: 'Merriweather',
                   fontSize: 15,
                   fontWeight : FontWeight.bold,
-                  color: Colors.brown,
+                  color: Colors.brown,        
   ),
-  
-
             ),
+//
+            //const IconButton(
+            //iconSize: 100,
+            //icon: Icon(
+              //Icons.favorite,
+            //),
+            
+           // onPressed: () {
+              //setState(
+              //  () {
+               //   count++;
+               // },
+              //);
+            //},
+            //),
 
+          //const IconButton(
+           // icon: Icon(
+              //Icons.article,
+            //),
+
+          const Positioned(
+          bottom: 15, right: 15, 
+          child: Icon(
+            Icons.favorite, 
+            color: Colors.white70, 
+            size:100),    
+
+          )
           ],
         ),
       ),
