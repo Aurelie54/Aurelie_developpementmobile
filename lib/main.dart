@@ -29,7 +29,7 @@ class ArtWork extends StatefulWidget {
 }
 
 class _MyArtworkState extends State<ArtWork> {
-  int count = 0;
+  bool _isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,30 +37,55 @@ class _MyArtworkState extends State<ArtWork> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset('assets/Mona_Lisa.jpg'),
-            const Text(
-              'Mona Lisa',
-              style: TextStyle(
-                fontFamily: 'Merriweather',
-                fontSize: 30,
-                color: Colors.brown,
-              ),
-            ),
-            const Text(
-              'Léonard De Vinci',
-              style: TextStyle(
-                fontFamily: 'Merriweather',
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                color: Colors.brown,
-              ),
-            ),
-            Row(
+      body: Stack(
+        children: [
+          Center(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.asset('assets/Mona_Lisa.jpg'),
+                const Text(
+                  'Mona Lisa',
+                  style: TextStyle(
+                    fontFamily: 'Merriweather',
+                    fontSize: 30,
+                    color: Colors.brown,
+                  ),
+                ),
+                const Text(
+                  'Léonard De Vinci',
+                  style: TextStyle(
+                    fontFamily: 'Merriweather',
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.brown,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Positioned(
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            child: Opacity(
+              opacity: 0.75,
+              child: Icon(
+                Icons.favorite,
+                color: Colors.white,
+                size: 100,
+              ),
+            ),
+          ),
+          Positioned(
+            top: 20,
+            left: 20,
+            right: 20,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+
               children: [
                 IconButton(
                   icon: const Icon(Icons.article),
@@ -69,15 +94,20 @@ class _MyArtworkState extends State<ArtWork> {
                   },
                 ),
                 IconButton(
-                  icon: const Icon(Icons.favorite),
+                  icon: Icon(
+                    _isFavorite ? Icons.favorite : Icons.favorite_border,
+                    color: Colors.red,
+                  ),
                   onPressed: () {
-                    // Action à effectuer lors du clic sur l'icône favorite
+                    setState(() {
+                      _isFavorite = !_isFavorite;
+                    });
                   },
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
